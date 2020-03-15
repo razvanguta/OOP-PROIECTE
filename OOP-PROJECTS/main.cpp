@@ -273,8 +273,6 @@ int main()
 		cin >> m;
 		v[i] = m; //memoram
 	}
-	cout << v[0] + v[1];
-	cout << v[0] * v[1];
 	cout << '\n';
 	cout << "Afisarea matriciilor: " << '\n';
 	for (int i = 0; i < n; i++)
