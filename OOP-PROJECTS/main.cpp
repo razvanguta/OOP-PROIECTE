@@ -26,19 +26,19 @@ ostream& operator << (ostream& out, const Numar_Complex& z)
 {
 	//supraincarcam afisarea
 	out << z.re;
-	if(z.im>=0)
-	out << "+"<< z.im << "*i";
+	if (z.im >= 0)
+		out << "+" << z.im << "*i";
 	else
-	out << z.im << "*i";
+		out << z.im << "*i";
 	return out;
 }
 istream& operator >> (istream& in, Numar_Complex& z)
 {
 	//supraincarcam citirea
-	cout<< "Real:";
-		in >> z.re;
-	cout<< "Imaginar:";
-	in>> z.im;
+	cout << "Real:";
+	in >> z.re;
+	cout << "Imaginar:";
+	in >> z.im;
 	cout << '\n';
 	return in;
 }
@@ -86,7 +86,7 @@ public:
 	friend bool verifadunare(Matrice_Complexa& m, Matrice_Complexa& m1); // verificare daca adunarea a 2 matrici se poate realiza
 	friend bool verifinmultire(Matrice_Complexa& m, Matrice_Complexa& m1); // verificare daca inmultirea a 2 matrici se poate realiza
 };
-int Matrice_Complexa:: getnrl()
+int Matrice_Complexa::getnrl()
 {
 	return this->nrl;
 }
@@ -103,7 +103,7 @@ bool verifadunare(Matrice_Complexa& m, Matrice_Complexa& m1)
 		return 0;
 }
 bool verifinmultire(Matrice_Complexa& m, Matrice_Complexa& m1)
-{ 
+{
 	// inmultirea se poate realiza daca nr de coloane ale matricii din partea stanga a operatorului * este egal cu nr de linii al matricii din partea dreapta a operatorului *
 	if (m.getcol() == m1.getnrl())
 		return 1;
@@ -116,7 +116,7 @@ Matrice_Complexa::Matrice_Complexa()
 Matrice_Complexa::Matrice_Complexa(int linii, int coloane)
 {
 	// constructor initializare cu nr lin nr col
-    m = new Numar_Complex * [linii];
+	m = new Numar_Complex * [linii];
 	for (int i = 0; i < linii; i++)
 	{
 		m[i] = new Numar_Complex[coloane];
@@ -135,7 +135,7 @@ istream& operator>>(istream& in, Matrice_Complexa& m2)
 	cin >> nrcoloane;
 	m2.nrl = nrlinii;
 	m2.nrc = nrcoloane;
-    m2.m = new Numar_Complex * [nrlinii];
+	m2.m = new Numar_Complex * [nrlinii];
 	for (int i = 0; i < nrlinii; i++)
 	{
 		m2.m[i] = new Numar_Complex[nrcoloane];
@@ -148,7 +148,7 @@ istream& operator>>(istream& in, Matrice_Complexa& m2)
 	{
 		for (int j = 0; j < m2.nrc; j++)
 		{
-			cout << "Linia " << i <<" "<< "Coloana " << j<<'\n';
+			cout << "Linia " << i << " " << "Coloana " << j << '\n';
 			in >> a;
 			m2.m[i][j] = a;
 		}
@@ -156,7 +156,7 @@ istream& operator>>(istream& in, Matrice_Complexa& m2)
 	return in;
 }
 ostream& operator<<(ostream& out, const Matrice_Complexa& m2)
-{		
+{
 	//supraincarcare << in functie de operatorul << de la Numar_Complex
 	for (int i = 0; i < m2.nrl; i++)
 	{
@@ -180,7 +180,7 @@ Matrice_Complexa::Matrice_Complexa(const Matrice_Complexa& m2)
 			Numar_Complex* nc = new Numar_Complex(m2.m[i][j]);
 			m[i][j] = *nc;
 		}
-	nrl= m2.nrl;
+	nrl = m2.nrl;
 	nrc = m2.nrc;
 };
 
@@ -257,9 +257,6 @@ Matrice_Complexa& Matrice_Complexa::operator*(const Matrice_Complexa& m2)
 Matrice_Complexa::~Matrice_Complexa()
 {
 	//destructor, care dezaloca matricea alocata dinamic
-
-	for (int i = 0; i < nrl; i++)
-		delete m[i];
 	delete[] m;
 }
 int main()
@@ -267,24 +264,20 @@ int main()
 	int n;
 	cin >> n;
 	Matrice_Complexa* v = new Matrice_Complexa[n]; //alocam dinamic un vector de tip Matrice_Complexa care se va distruge in destructor
-	Matrice_Complexa m(0, 0);
 	for (int i = 0; i < n; i++)
 	{
-		cin >> m;
-		v[i] = m; //memoram
+		cin >> v[i];//memoram
 	}
 	cout << '\n';
 	cout << "Afisarea matriciilor: " << '\n';
 	for (int i = 0; i < n; i++)
 	{
-		cout << "Matricea de pe pozitia" <<" "<<  i << '\n';
+		cout << "Matricea de pe pozitia" << " " << i << '\n';
 		cout << v[i] << '\n';  //afisam 
 	}
+	delete[] v;
 	return 0;
 }
-
-
-
 /* solutia a fost testata pentru urmatoarele 2 matrici, fiind verificata dupa rezultatul obtinut "pe hartie":
 Fie A(3linii,3coloane):
 |1+2*i 3+2*i 1+2*i|
