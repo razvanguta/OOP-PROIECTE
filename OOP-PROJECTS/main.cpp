@@ -263,7 +263,7 @@ int main()
 {
 	int n;
 	cin >> n;
-	Matrice_Complexa* v = new Matrice_Complexa[n]; //alocam dinamic un vector de tip Matrice_Complexa care se va distruge in destructor
+	Matrice_Complexa* v = new Matrice_Complexa[n]; //alocam dinamic un vector de tip Matrice_Complexa
 	for (int i = 0; i < n; i++)
 	{
 		cin >> v[i];//memoram
